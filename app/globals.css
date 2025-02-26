@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+@layer base {
+  :root {
+    --background: 0 0% 100%; /* White */
+    --foreground: 220 14.3% 4.1%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 14.3% 4.1%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 14.3% 4.1%;
+
+    --primary: 240 90% 60%; /* Bright Blue */
+    --primary-foreground: 60 9.1% 97.8%;
+
+    --secondary: 140 50% 75%; /* Soft Purple */
+    --secondary-foreground: 220 14.3% 10%;
+
+    --button: 140 50% 75%; /* Light Green */
+    --button-foreground: 220 14.3% 10%;
+
+    --muted: 240 30% 92%;
+    --muted-foreground: 220 10% 40%;
+
+    --accent: 280 50% 75%;
+    --accent-foreground: 220 14.3% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 60 9.1% 97.8%;
+
+    --border: 220 5.9% 85%;
+    --input: 220 5.9% 85%;
+    --ring: 240 90% 60%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 20% 15%;
+    --foreground: 60 9.1% 97.8%;
+
+    --card: 250 15% 12%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 240 20% 15%;
+    --popover-foreground: 60 9.1% 97.8%;
+
+    --primary: 230 80% 50%;
+    --primary-foreground: 60 9.1% 97.8%;
+
+    --secondary: 280 50% 40%;
+    --secondary-foreground: 60 9.1% 97.8%;
+
+    --button: 140 50% 50%; /* Darker Green */
+    --button-foreground: 60 9.1% 97.8%;
+
+    --muted: 240 30% 22%;
+    --muted-foreground: 220 10% 55%;
+
+    --accent: 280 40% 35%;
+    --accent-foreground: 60 9.1% 97.8%;
+
+    --destructive: 0 72.2% 50.6%;
+    --destructive-foreground: 60 9.1% 97.8%;
+
+    --border: 240 30% 25%;
+    --input: 240 30% 25%;
+    --ring: 230 80% 50%;
+  }
+}
+
+
+
+/* Gradient Background */
+.gradient-bg {
+  background: linear-gradient(
+    120deg,
+    hsl(240, 85%, 85%), /* Light Blue */
+    hsl(190, 87%, 76%), /* Soft Purple */
+    hsl(173, 93%, 84%) /* Pinkish */
+  );
+}
+
+/* Shadows */
+.shadow-light {
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-dark {
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+
+@layer components {
+  /* Button utilities */
+  .btn {
+    @apply inline-flex items-center justify-center rounded-lg px-4 py-2 font-medium tracking-tight;
+  }
+  .btn-primary {
+    @apply bg-black text-white;
+  }
+  .btn-text {
+    @apply bg-transparent text-black;
+  }
+  /* LogoTicker utility */
+  .logo-ticker-image {
+    @apply h-8 w-auto;
+  }
+  /* Tag utility */
+  .tag {
+    @apply inline-flex rounded-lg border border-[#222]/10 px-3 py-1 text-sm tracking-tight;
+  }
+  /* Section utilities */
+  .section-heading {
+    @apply mx-auto max-w-[540px];
+  }
+  .section-title {
+    @apply bg-gradient-to-b from-black to-[#001E80] bg-clip-text text-center text-3xl font-bold tracking-tighter text-transparent md:text-[54px] md:leading-[60px];
+  }
+  .section-description {
+    @apply text-center text-[22px] leading-[30px] tracking-tight text-[#010D3E];
+  }
+  /* Card utility */
+  .card {
+    @apply w-full max-w-xs rounded-3xl border border-[#222222]/10 p-10 shadow-[0_7px_14px_#EAEAEA];
+  }
+}

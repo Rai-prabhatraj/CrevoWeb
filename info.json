@@ -1,0 +1,22 @@
+{
+    "comp-name": "",
+    "description": "YadaTech is a technology company that provides technology solutions to businesses.",
+    "employees": [
+        {
+            "name": "Md Sajidul Mowla",
+            "email": "smsajid7300@gmail.com",
+            "role": "CTO & Founder"
+        },
+        {
+            "name": "Jonayet Hossain",
+            "email": "jonayet@gmail.com",
+            "role": "CMO, CFO & Co-Founder"
+
+        },
+        {
+            "name": "Mishkat", 
+            "email": "jane.doe@yadatech.com",
+            "role": "CTO & Co-Founder"
+        }
+    ]
+}
