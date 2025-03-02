@@ -143,3 +143,17 @@ html {
     @apply w-full max-w-xs rounded-3xl border border-[#222222]/10 p-10 shadow-[0_7px_14px_#EAEAEA];
   }
 }
+
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 2s infinite ease-in-out;
+}

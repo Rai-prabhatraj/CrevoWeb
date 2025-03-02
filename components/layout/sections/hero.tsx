@@ -13,13 +13,12 @@ export const HeroSection = () => {
     <section className="container w-full">
       <div className="grid place-items-center lg:max-w-screen-xl gap-8 mx-auto py-20 md:py-32">
         <div className="text-center space-y-8">
-          <Badge variant="outline" className="text-sm py-2">
-            <span className="mr-2 text-primary">
-              <Badge>New</Badge>
-            </span>
-            <span>We are live now!</span>
-          </Badge>
-
+        <Badge variant="outline" className="text-sm py-2 animate-bounce">
+  <span className="mr-2 text-primary">
+    <Badge>New</Badge>
+  </span>
+  <span>We are live now!</span>
+</Badge>
           {/* <div className="max-w-screen-md mx-auto text-center text-4xl md:text-6xl font-bold">
             <h1>
               Welcome to 

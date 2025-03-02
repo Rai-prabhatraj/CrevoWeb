@@ -107,7 +107,7 @@ export const Navbar = () => {
                 </SheetTitle>
               </SheetHeader>
 
-              <nav className="flex flex-col gap-2">
+              <nav className="flex flex-col gap-4">
                 {ROUTES.map(({ href, label }) => (
                   <Button
                     key={href}

@@ -31,7 +31,7 @@ const Hero = () => {
   }, []);
   
   return (
-    <section className='bg-secondarygray min-h-screen md:min-h-fit lg:min-h-screen w-screen flex justify-center relative px-6 md:px-12 overflow-hidden'>
+    <section className='bg-secondarygray min-h-screen md:min-h-fit lg:min-h-screen w-full flex justify-center relative px-6 md:px-12 overflow-hidden select-none'>
         {/* Tech particles floating in background */}
         {particles.map((particle) => (
           <motion.div
