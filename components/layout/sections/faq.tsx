@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -39,29 +43,84 @@ const FAQList: FAQProps[] = [
 ];
 
 export const FAQSection = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const section = document.getElementById("faq");
+      if (section) {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.8) {
+          setIsVisible(true);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <section id="faq" className="container md:w-[700px] py-24 sm:py-32">
-      <div className="text-center mb-8">
-        <h2 className="text-lg text-primary text-center mb-2 tracking-wider">
+    <motion.section
+      id="faq"
+      initial={{ opacity: 0, y: 50 }}
+      animate={isVisible ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="container md:w-[700px] py-24 sm:py-32"
+    >
+      {/* Header with Floating Effect */}
+      <motion.div
+        className="text-center mb-8"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <motion.h2
+          className="text-lg text-primary text-center mb-2 tracking-wider"
+          whileHover={{ y: -3 }}
+          transition={{ type: "spring", stiffness: 200 }}
+        >
           FAQS
-        </h2>
+        </motion.h2>
 
-        <h2 className="text-3xl md:text-4xl text-center font-bold">
+        <motion.h2
+          className="text-3xl md:text-4xl text-center font-bold"
+          whileHover={{ scale: 1.05 }}
+          transition={{ type: "spring", stiffness: 200 }}
+        >
           Common Questions
-        </h2>
-      </div>
+        </motion.h2>
+      </motion.div>
 
+      {/* FAQ Accordion with Scroll Effects */}
       <Accordion type="single" collapsible className="AccordionRoot">
-        {FAQList.map(({ question, answer, value }) => (
-          <AccordionItem key={value} value={value}>
-            <AccordionTrigger className="text-left">
-              {question}
-            </AccordionTrigger>
+        {FAQList.map(({ question, answer, value }, index) => (
+          <motion.div
+            key={value}
+            initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+            animate={isVisible ? { opacity: 1, x: 0 } : {}}
+            transition={{ delay: 0.1 * index, duration: 0.6 }}
+          >
+            <AccordionItem key={value} value={value}>
+              <motion.div
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.95, y: -2 }}
+                className="text-left"
+              >
+                <AccordionTrigger>{question}</AccordionTrigger>
+              </motion.div>
 
-            <AccordionContent>{answer}</AccordionContent>
-          </AccordionItem>
+              <motion.div
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <AccordionContent>{answer}</AccordionContent>
+              </motion.div>
+            </AccordionItem>
+          </motion.div>
         ))}
       </Accordion>
-    </section>
+    </motion.section>
   );
 };

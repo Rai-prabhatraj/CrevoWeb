@@ -1,6 +1,9 @@
 "use client";
+
+import React, { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import { Menu } from "lucide-react";
-import React from "react";
 import {
   Sheet,
   SheetContent,
@@ -19,10 +22,9 @@ import {
   NavigationMenuTrigger,
 } from "../ui/navigation-menu";
 import { Button } from "../ui/button";
-import Link from "next/link";
-import Image from "next/image";
 import info from "@/info.json";
 
+// Type definitions for better code integrity
 interface RouteProps {
   href: string;
   label: string;
@@ -31,80 +33,85 @@ interface RouteProps {
 interface FeatureProps {
   title: string;
   description: string;
+  icon?: React.ReactNode; // Optional icon for features
 }
 
-const routeList: RouteProps[] = [
+// Navigation routes - moved outside component for cleanliness
+const ROUTES: RouteProps[] = [
   { href: "#testimonials", label: "Testimonials" },
-
   { href: "#contact", label: "Contact" },
   { href: "#faq", label: "FAQ" },
 ];
 
-const featureList: FeatureProps[] = [
+// Feature list - moved outside component for cleanliness
+const FEATURES: FeatureProps[] = [
   {
     title: "Showcase Your Value",
-    description: "Highlight how your product solves user problems.",
+    description: "Highlight how your product solves user problems effectively.",
   },
   {
     title: "Build Trust",
     description:
-      "Leverages social proof elements to establish trust and credibility.",
+      "Leverage social proof elements to establish trust and credibility with potential clients.",
   },
   {
     title: "Capture Leads",
     description:
-      "Make your lead capture form visually appealing and strategically.",
+      "Convert visitors into prospects with strategic and visually appealing lead capture forms.",
   },
 ];
 
 export const Navbar = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleMobileNavClose = () => setIsOpen(false);
 
   return (
-    <header className="shadow-inner bg-opacity-15 w-[90%] md:w-[70%] lg:w-[75%] lg:max-w-screen-xl top-5 mx-auto sticky border border-secondary z-40 rounded-2xl flex justify-between items-center p-2 bg-card">
-      <Link href="/" className="font-bold text-lg flex items-center">
+<header className="sticky top-5 z-40 mx-auto w-[90%] md:w-[70%] lg:w-[75%] lg:max-w-screen-xl rounded-xl border border-secondary bg-card bg-opacity-15 py-0.5 px-3 shadow-sm flex justify-between items-center h-15"> 
+      <Link href="/" className="flex items-center font-bold text-lg">
         <Image
           src="/images/Crevo.png"
-          alt="Crevo Logo"
+          alt={`${info["comp-name"]} Logo`}
           width={70}
           height={70}
+          className="mr-2"
         />
-        {info["comp-name"]}
+        <span className="hidden md:block">{info["comp-name"]}</span>
       </Link>
 
       {/* Mobile Menu */}
       <div className="flex items-center lg:hidden">
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger asChild>
-            <Menu
-              onClick={() => setIsOpen(!isOpen)}
-              className="cursor-pointer lg:hidden"
-            />
+            <Button variant="ghost" size="icon" aria-label="Menu">
+              <Menu className="h-6 w-6" />
+            </Button>
           </SheetTrigger>
 
           <SheetContent
             side="left"
-            className="flex flex-col justify-between rounded-tr-2xl rounded-br-2xl bg-card border-secondary"
+            className="flex flex-col justify-between rounded-tr-2xl rounded-br-2xl border-secondary bg-card"
           >
             <div>
-              <SheetHeader className="mb-4 ml-4">
+              <SheetHeader className="mb-6 ml-4">
                 <SheetTitle className="flex items-center">
                   <Link href="/" className="flex items-center">
                     <Image
                       src="/images/Crevo.png"
-                      alt="Crevo Logo"
+                      alt={`${info["comp-name"]} Logo`}
                       width={80}
                       height={80}
                     />
+                    <span className="ml-2 text-lg font-bold">{info["comp-name"]}</span>
                   </Link>
                 </SheetTitle>
               </SheetHeader>
 
-              <div className="flex flex-col gap-2">
-                {routeList.map(({ href, label }) => (
+              <nav className="flex flex-col gap-2">
+                {ROUTES.map(({ href, label }) => (
                   <Button
                     key={href}
-                    onClick={() => setIsOpen(false)}
+                    onClick={handleMobileNavClose}
                     asChild
                     variant="ghost"
                     className="justify-start text-base"
@@ -112,13 +119,25 @@ export const Navbar = () => {
                     <Link href={href}>{label}</Link>
                   </Button>
                 ))}
-              </div>
+                
+                {/* Features in mobile menu */}
+                <Button
+                  onClick={handleMobileNavClose}
+                  asChild
+                  variant="ghost"
+                  className="justify-start text-base"
+                >
+                  <Link href="#features">Features</Link>
+                </Button>
+              </nav>
             </div>
 
             <SheetFooter className="flex-col sm:flex-col justify-start items-start">
-              <Separator className="mb-2" />
-              {/* Schedule Demo Button */}
-              <Button asChild className="w-full bg-gray-600 text-white mt-4">
+              <Separator className="mb-4" />
+              <Button 
+                asChild 
+                className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+              >
                 <Link href="#schedule-demo">Schedule Demo</Link>
               </Button>
             </SheetFooter>
@@ -130,16 +149,16 @@ export const Navbar = () => {
       <NavigationMenu className="hidden lg:block mx-auto">
         <NavigationMenuList>
           <NavigationMenuItem>
-            <NavigationMenuTrigger className="bg-card text-base">
+            <NavigationMenuTrigger className="bg-transparent text-base font-medium">
               Features
             </NavigationMenuTrigger>
             <NavigationMenuContent>
-              <div className="grid w-[600px] grid-cols-2 gap-5 p-4">
-                <ul className="flex flex-col gap-2">
-                  {featureList.map(({ title, description }) => (
+              <div className="grid w-[650px] grid-cols-2 gap-6 p-6 bg-card rounded-xl shadow-lg">
+                <ul className="flex flex-col gap-3">
+                  {FEATURES.map(({ title, description }) => (
                     <li
                       key={title}
-                      className="rounded-md p-3 text-sm hover:bg-muted"
+                      className="rounded-md p-3 text-sm transition-colors hover:bg-muted"
                     >
                       <p className="mb-1 font-semibold leading-none text-foreground">
                         {title}
@@ -150,14 +169,31 @@ export const Navbar = () => {
                     </li>
                   ))}
                 </ul>
+                <div className="flex flex-col justify-center p-6 bg-muted/50 rounded-lg">
+                  <h3 className="mb-2 text-lg font-semibold">Why Choose Us</h3>
+                  <p className="mb-4 text-sm text-muted-foreground">
+                    Our platform helps businesses increase conversion rates and drive 
+                    growth through data-driven optimization strategies.
+                  </p>
+                  <Button 
+                    asChild 
+                    variant="outline" 
+                    className="mt-2 self-start"
+                  >
+                    <Link href="#learn-more">Learn More</Link>
+                  </Button>
+                </div>
               </div>
             </NavigationMenuContent>
           </NavigationMenuItem>
 
           <NavigationMenuItem>
-            {routeList.map(({ href, label }) => (
+            {ROUTES.map(({ href, label }) => (
               <NavigationMenuLink key={href} asChild>
-                <Link href={href} className="text-base px-2">
+                <Link 
+                  href={href} 
+                  className="group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-base font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+                >
                   {label}
                 </Link>
               </NavigationMenuLink>
@@ -168,8 +204,17 @@ export const Navbar = () => {
 
       {/* Schedule Demo Button for Desktop */}
       <div className="hidden lg:flex">
-        <Button asChild className="bg-gray-600 text-white px-5 py-2 rounded-md">
-          <Link href="#schedule-demo">Schedule Demo</Link>
+        <Button 
+          asChild 
+          className="bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:ring-4"
+        >
+          <Link 
+  href="https://calendly.com/prabhatrajrai4" 
+  target="_blank" 
+  rel="noopener noreferrer"
+>
+  Schedule Demo
+</Link>
         </Button>
       </div>
     </header>
