@@ -46,19 +46,17 @@ const ROUTES: RouteProps[] = [
 // Feature list - moved outside component for cleanliness
 const FEATURES: FeatureProps[] = [
   {
-    title: "Showcase Your Value",
-    description: "Highlight how your product solves user problems effectively.",
+    "title": "Track Student Progress",
+    "description": "Monitor coding performance across multiple platforms with real-time analytics."
   },
   {
-    title: "Build Trust",
-    description:
-      "Leverage social proof elements to establish trust and credibility with potential clients.",
+    "title": "Enhance Institutional Insights",
+    "description": "AI-powered dashboards provide deep analysis of student skills and growth."
   },
   {
-    title: "Capture Leads",
-    description:
-      "Convert visitors into prospects with strategic and visually appealing lead capture forms.",
-  },
+    "title": "Empower Career Opportunities",
+    "description": "Connect top-performing students with industry leaders through direct referrals."
+  }
 ];
 
 export const Navbar = () => {
@@ -172,8 +170,7 @@ export const Navbar = () => {
                 <div className="flex flex-col justify-center p-6 bg-muted/50 rounded-lg">
                   <h3 className="mb-2 text-lg font-semibold">Why Choose Us</h3>
                   <p className="mb-4 text-sm text-muted-foreground">
-                    Our platform helps businesses increase conversion rates and drive 
-                    growth through data-driven optimization strategies.
+                    Our platform empowers institutes with real-time student performance tracking, AI-driven insights & seamless hackathon integration. Personalized dashboards help students & faculty stay ahead, while direct industry referrals connect top talent with leading companies.
                   </p>
                   <Button 
                     asChild 
