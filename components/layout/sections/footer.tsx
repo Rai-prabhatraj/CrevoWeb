@@ -83,7 +83,7 @@ export const FooterSection = () => {
             &copy; 2025 Powered by
             <Link
               target="_blank"
-              href="https://novanextech.vercel.app/"
+              href=""
               className="text-primary transition-all border-primary hover:border-b-2 ml-1"
             >
              Novanex Technologies

@@ -112,76 +112,76 @@ export const ContactSection = () => {
           transition={{ type: "spring", stiffness: 100 }}
           viewport={{ once: true }}
         >
-          <Card className="bg-muted/50 dark:bg-card p-8 rounded-xl shadow-lg">
-            <CardHeader className="text-primary text-2xl font-semibold text-center">Get in Touch</CardHeader>
-            <CardContent>
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <FormField control={form.control} name="firstName" render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>First Name</FormLabel>
-                      <FormControl>
-                        <Input placeholder="John" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )} />
+          <Card className="bg-muted/50 dark:bg-card p-6 md:p-8 rounded-xl shadow-lg w-full max-w-2xl mx-auto">
+      <CardHeader className="text-primary text-2xl font-semibold text-center">Get in Touch</CardHeader>
+      <CardContent>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <FormField control={form.control} name="firstName" render={({ field }) => (
+              <FormItem>
+                <FormLabel>First Name</FormLabel>
+                <FormControl>
+                  <Input placeholder="John" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )} />
 
-                  <FormField control={form.control} name="lastName" render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Last Name</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Doe" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )} />
+            <FormField control={form.control} name="lastName" render={({ field }) => (
+              <FormItem>
+                <FormLabel>Last Name</FormLabel>
+                <FormControl>
+                  <Input placeholder="Doe" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )} />
 
-                  <FormField control={form.control} name="email" render={({ field }) => (
-                    <FormItem className="col-span-2">
-                      <FormLabel>Email</FormLabel>
-                      <FormControl>
-                        <Input type="email" placeholder="john.doe@example.com" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )} />
+            <FormField control={form.control} name="email" render={({ field }) => (
+              <FormItem className="sm:col-span-2">
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input type="email" placeholder="john.doe@example.com" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )} />
 
-                  <FormField control={form.control} name="subject" render={({ field }) => (
-                    <FormItem className="col-span-2">
-                      <FormLabel>Subject</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select a subject" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem value="Request Demo">Request Demo</SelectItem>
-                          <SelectItem value="Schedule a Meeting">Schedule a Meeting</SelectItem>
-                          <SelectItem value="Support">Support</SelectItem>
-                          <SelectItem value="Other">Other</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )} />
+            <FormField control={form.control} name="subject" render={({ field }) => (
+              <FormItem className="sm:col-span-2">
+                <FormLabel>Subject</FormLabel>
+                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select a subject" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="Request Demo">Request Demo</SelectItem>
+                    <SelectItem value="Schedule a Meeting">Schedule a Meeting</SelectItem>
+                    <SelectItem value="Support">Support</SelectItem>
+                    <SelectItem value="Other">Other</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )} />
 
-                  <FormField control={form.control} name="message" render={({ field }) => (
-                    <FormItem className="col-span-2">
-                      <FormLabel>Message</FormLabel>
-                      <FormControl>
-                        <Textarea rows={5} placeholder="Your message..." className="resize-none" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )} />
+            <FormField control={form.control} name="message" render={({ field }) => (
+              <FormItem className="sm:col-span-2">
+                <FormLabel>Message</FormLabel>
+                <FormControl>
+                  <Textarea rows={5} placeholder="Your message..." className="resize-none" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )} />
 
-                  <Button className="w-full col-span-2">Send Message</Button>
-                </form>
-              </Form>
-            </CardContent>
-          </Card>
+            <Button className="w-full sm:col-span-2">Send Message</Button>
+          </form>
+        </Form>
+      </CardContent>
+    </Card>
         </motion.div>
       </motion.div>
     </motion.section>
